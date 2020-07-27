@@ -6,26 +6,23 @@
 package javaapplication1;
 
 import java.io.IOException;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
-public class sensor {
-    public static void main(String[] args) throws IOException {
+public class invernadero {
+     public static void main(String[] args) throws IOException {
         // TODO code application logic here
-        String solicitud_url = "http://192.168.99.100/api-invernadero/public/api/sensor";
+        String solicitud_url = "http://192.168.99.100/api-invernadero/public/api/invernadero";
         curl api = new curl(solicitud_url, "POST");
         
-        JSONObject sensor = new JSONObject();
-        sensor.put("id_invernadero", 3);
+        JSONObject invernadero = new JSONObject();
+        invernadero.put("id_planta", 2);
+        
           
-        JSONObject obj = api.apicall(sensor);
+        JSONObject obj = api.apicall(invernadero);
           
         System.out.println(obj.get("mensaje"));
  
     
 
     }
-
 }
