@@ -18,7 +18,7 @@ public class sensor {
         curl api = new curl(solicitud_url, "POST");
         
         JSONObject sensor = new JSONObject();
-        sensor.put("id_invernadero", 3);
+        sensor.put("id_invernadero", 2);
           
         JSONObject obj = api.apicall(sensor);
           
