@@ -26,6 +26,6 @@ public class sensor {
  
     
 
-    }
+    }///puedes ver los cambios!!
 
 }

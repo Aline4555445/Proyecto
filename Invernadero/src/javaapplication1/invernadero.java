@@ -15,7 +15,7 @@ public class invernadero {
         curl api = new curl(solicitud_url, "POST");
         
         JSONObject invernadero = new JSONObject();
-        invernadero.put("id_planta", 2);
+        invernadero.put("id_planta", 6);
         
           
         JSONObject obj = api.apicall(invernadero);
