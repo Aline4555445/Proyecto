@@ -22,20 +22,37 @@ public class JavaApplication1 {
      */
     public static void main(String[] args) throws IOException {
         // TODO code application logic here
-        String solicitud_url = "http://127.0.0.1/calculadora/public/api/Aceleracion";
+        String solicitud_url = "http://127.0.0.1/api-invernadero/public/api/invernadero";
         curl api = new curl(solicitud_url, "POST");
         
-        JSONObject aceleracion = new JSONObject();
-        aceleracion.put("d", 300);
-        aceleracion.put("t", 2);
-        
-        JSONObject obj = api.apicall(aceleracion);
-        
-        int tiempo = Integer.parseInt(obj.get("tiempo").toString());
-        System.out.println(tiempo);
-        System.out.println(obj.get("distancia"));
-        System.out.println(obj.get("aceleracion"));
-
+//        JSONObject aceleracion = new JSONObject();
+//        aceleracion.put("d", 300);
+//        aceleracion.put("t", 2);
+//        
+//        JSONObject obj = api.apicall(aceleracion);
+//        
+//        int tiempo = Integer.parseInt(obj.get("tiempo").toString());
+//        System.out.println(tiempo);
+//        System.out.println(obj.get("distancia"));
+//        System.out.println(obj.get("aceleracion"));
+ //---------------Sensor-------------------------------------
+//          JSONObject sensor = new JSONObject();
+//          sensor.put("id_sensor", 16);
+//          sensor.put("id_invernadero", 30);
+//          
+//          JSONObject obj = api.apicall(sensor);
+//          
+//          System.out.println(obj.get("id_sensor"));
+          
+          //------------invernadero-----------------------
+          
+            JSONObject invernadero = new JSONObject();
+          invernadero.put("id_invernadero", 6);
+          invernadero.put("id_planta", 6);
+          
+          JSONObject obj = api.apicall(invernadero);
+          
+          System.out.println(obj.get("id_invernadero"));
     }
 
 }

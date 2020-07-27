@@ -60,6 +60,7 @@ public class curl {
             }
             conn.disconnect();
             JSONParser parser = new JSONParser();
+            System.out.println(output);
             obj = (JSONObject) parser.parse(output);
         } catch (MalformedURLException e) {
             e.printStackTrace();
