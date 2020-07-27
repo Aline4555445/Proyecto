@@ -38,7 +38,7 @@ public class JavaApplication1 {
  //---------------Sensor-------------------------------------
           JSONObject sensor = new JSONObject();
           //sensor.put("id_sensor", 1);
-          sensor.put("id_invernadero", 4);
+          sensor.put("id_invernadero", 1);
           
           JSONObject obj = api.apicall(sensor);
           
@@ -48,11 +48,11 @@ public class JavaApplication1 {
 //          
 //          JSONObject invernadero = new JSONObject();
 ////        invernadero.put("id_invernadero", 4);
-//          invernadero.put("id_planta", 2);
+//          invernadero.put("id_planta", 1);
 //          
 //          JSONObject obj = api.apicall(invernadero);
 //          
-//          System.out.println(obj.get("id_invernadero"));
+//          System.out.println(obj.get("mensaje"));
     }
 
 }
