@@ -1,4 +1,7 @@
+package javaapplication1;
 
+
+import javaapplication1.Principal;
 import javax.swing.JScrollPane;
 
 /*
