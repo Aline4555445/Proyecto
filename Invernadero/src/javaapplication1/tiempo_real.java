@@ -5,32 +5,54 @@
  */
 package javaapplication1;
 
+import java.sql.Connection;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.imageio.IIOException;
 import javax.swing.table.DefaultTableModel;
-
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 public class tiempo_real extends javax.swing.JFrame {
 
     DefaultTableModel model;
+   
     public tiempo_real() {
         initComponents();
         cargar();
     }
 
-     public void carcar(){
+     public void cargar(){
     
-        String [] titulos = {"ID_reposte","Sensor","Techa","Hora","Tempeatura","Humedad"};
-        String [] registros = new String[500];
-    String sql = "select *from informe";
+        String [] titulos = {"ID_informe","Sensor","Fecha","Hora","Tempeatura","Humedad"};
+        String [] registros = new String[50];
+    //String sql = "select *from informe";
     
     model = new DefaultTableModel(null, titulos);
      conexion cn=new conexion();
-   Connection con = cn.conexion();
+     
+        Statement st;
+        ResultSet rs;
+        try {
+            st=cn.con.createStatement();
+            rs=st.executeQuery("select *from informe");
+            while (rs.next()) {   
+                 registros[0] = rs.getString("id_informe");
+                 registros[1] = rs.getString("id_sensor");
+                 registros[2] = rs.getString("fecha");
+                 registros[3] = rs.getString("hora"); 
+                 registros[4] = rs.getString("temperatura");
+                 registros[5] = rs.getString("humedad");
+         model.addRow(registros);
+        
+        } 
+       Table.setModel(model);
+        }catch (Exception e) {
+        }
     
+        }
     
-    }
-    
+  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
