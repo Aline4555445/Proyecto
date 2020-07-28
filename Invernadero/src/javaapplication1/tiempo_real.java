@@ -19,12 +19,12 @@ public class tiempo_real extends javax.swing.JFrame {
    
     public tiempo_real() {
         initComponents();
-        cargar();
+     //   cargar();
     }
 
      public void cargar(){
     
-        String [] titulos = {"ID_informe","Sensor","Fecha","Hora","Tempeatura","Humedad"};
+        String [] titulos = {"Sensor","Fecha","Hora","Tempeatura","Humedad"};
         String [] registros = new String[50];
     //String sql = "select *from informe";
     
@@ -37,12 +37,12 @@ public class tiempo_real extends javax.swing.JFrame {
             st=cn.con.createStatement();
             rs=st.executeQuery("select *from informe");
             while (rs.next()) {   
-                 registros[0] = rs.getString("id_informe");
-                 registros[1] = rs.getString("id_sensor");
-                 registros[2] = rs.getString("fecha");
-                 registros[3] = rs.getString("hora"); 
-                 registros[4] = rs.getString("temperatura");
-                 registros[5] = rs.getString("humedad");
+                // registros[0] = rs.getString("id_informe");
+                 registros[0] = rs.getString("id_sensor");
+                 registros[1] = rs.getString("fecha");
+                 registros[2] = rs.getString("hora"); 
+                 registros[3] = rs.getString("temperatura");
+                 registros[4] = rs.getString("humedad");
          model.addRow(registros);
         
         } 
@@ -59,6 +59,8 @@ public class tiempo_real extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         Table = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,30 +69,95 @@ public class tiempo_real extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID_inforome", "Sensor", "Fecha", "Hora", "Temperatura", "Humedad"
+                "Sensor", "Fecha", "Hora", "Temperatura", "Humedad"
             }
         ));
         jScrollPane1.setViewportView(Table);
+
+        jButton1.setText("ver ahora");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Sensores activos");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(46, 46, 46)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 525, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(256, 256, 256)
+                            .addComponent(jLabel1))))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(146, Short.MAX_VALUE)
+                .addGap(21, 21, 21)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(206, 206, 206))
+                .addGap(189, 189, 189))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+      String [] titulos = {"Sensor","Fecha","Hora","Tempeatura","Humedad"};
+        String [] registros = new String[50];
+    //String sql = "select *from informe";
+    
+    model = new DefaultTableModel(null, titulos);
+     conexion cn=new conexion();
+     
+        Statement st;
+        ResultSet rs;
+        try {
+            st=cn.con.createStatement();
+            rs=st.executeQuery("select *from informe");
+            while (rs.next()) {   
+                // registros[0] = rs.getString("id_informe");
+                 registros[0] = rs.getString("id_sensor");
+                 registros[1] = rs.getString("fecha");
+                 registros[2] = rs.getString("hora"); 
+                 registros[3] = rs.getString("temperatura");
+                 registros[4] = rs.getString("humedad");
+         model.addRow(registros);
+        
+        } 
+       Table.setModel(model);
+        }catch (Exception e) {
+        }   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -129,6 +196,8 @@ public class tiempo_real extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable Table;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
