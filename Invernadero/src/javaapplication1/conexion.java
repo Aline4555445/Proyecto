@@ -24,25 +24,7 @@ System.err.println ("Error: " + e);
 
     }
     } //
-    public void carcar(){
-    
-        String [] titulos = {"id","sensor","fecha","hora","tempeatura","humedad"};
-        String [] registros = new String[500];
-    String sql = "select *from informe";
-    
-    model1 = DefaultTableModel (null, titulos);
-    
-    
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
+   
        
     public static void main(String[] args) { /// aqui es para visualizar si se hizo la conexion 
         conexion cn=new conexion();
