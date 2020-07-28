@@ -236,6 +236,10 @@ public class Informes extends javax.swing.JFrame {
         
         mostrar.setText(con.consulta_invernadero());
         }
+        if (invernadero.isSelected()){
+        conexion_prueba con = new conexion_prueba ();
+        mostrar.setText(con.llamada_datos());
+        }
     }//GEN-LAST:event_buscarActionPerformed
 
     /**

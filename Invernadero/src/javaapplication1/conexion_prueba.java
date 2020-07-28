@@ -10,10 +10,14 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class conexion {
+/**
+ *
+ * @author Gustavo Pastrana
+ */
+public class conexion_prueba {
     Connection con;
     
-    public conexion(){
+    public conexion_prueba(){
     
         try {
               Class.forName("com.mysql.jdbc.Driver");
@@ -24,22 +28,35 @@ System.err.println ("Error: " + e);
 
     }
     } //
-   
-       
-    public static void main(String[] args) { /// aqui es para visualizar si se hizo la conexion 
+   public String llamada_datos() { /// aqui es para visualizar si se hizo la conexion 
         conexion cn=new conexion();
         Statement st;
         ResultSet rs;
+        String res=("");
         try {
             st=cn.con.createStatement();
             rs=st.executeQuery("select * from catalogo");
             while (rs.next()) {   
                  //System.out.println(rs.getInt("id_invernadero")+" " +rs.getInt("id_planta"));
-         System.out.println(rs.getInt("id_planta")+" " +rs.getString("nombre")+" " +rs.getInt("temperatura")+" " +rs.getFloat("humedad"));
+         //System.out.println(rs.getInt("id_planta")+" " +rs.getString("nombre")+" " +rs.getInt("temperatura")+" " +rs.getFloat("humedad"));
+          res=res+rs.getString("id_planta")+("\t")+rs.getString("nombre")+"\t"+rs.getString("temperatura")+("\t")+rs.getString("humedad")+"\n";
+          System.out.println(res);
             }
+            
             cn.con.close();
+            
         } catch (Exception e) {
         }
+        return (res);
+}
+   public static void main(String[]args){
+       conexion_prueba conn = new conexion_prueba();
+       conn.llamada_datos();
+   }
+}
+    
         
-    }
-       }
+    
+
+
+
