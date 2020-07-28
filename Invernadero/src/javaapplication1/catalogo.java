@@ -155,4 +155,8 @@ public class catalogo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollBar jScrollBar1;
     // End of variables declaration//GEN-END:variables
+
+    String consulta_catalogo() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
