@@ -11,6 +11,7 @@ import javax.imageio.IIOException;
 import javax.swing.table.DefaultTableModel;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 public class busqueda extends javax.swing.JFrame {
 
@@ -57,7 +58,7 @@ public class busqueda extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         t = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        buscartodo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -86,6 +87,12 @@ public class busqueda extends javax.swing.JFrame {
         jScrollPane1.setViewportView(t);
 
         jLabel1.setText("Area");
+
+        buscartodo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                buscartodoKeyPressed(evt);
+            }
+        });
 
         jLabel2.setText("Busqueda");
 
@@ -140,7 +147,7 @@ public class busqueda extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(buscartodo, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel6)
@@ -172,7 +179,7 @@ public class busqueda extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buscartodo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
@@ -192,6 +199,39 @@ public class busqueda extends javax.swing.JFrame {
     private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField5ActionPerformed
+
+    private void buscartodoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscartodoKeyPressed
+        // TODO add your handling code here:
+        String titulos[]={"Sensor","Fecha","Hora","Temperatura","Humedad"};
+        String[] registros= new String[50];
+        
+            String sql="SELECT * FROM informe WHERE id_informe LIKE '%"+ buscartodo.getText()+"%'"
+                    +"OR id_sensor LIKE '%"+buscartodo.getText()+"%'"
+                    +"OR fecha LIKE '%"+buscartodo.getText()+"%'"
+                    +"OR hora LIKE '%"+buscartodo.getText()+"%'"
+                    +"OR temperatura LIKE '%"+buscartodo.getText()+"%'"
+                    +"OR humedad LIKE '%"+buscartodo.getText()+"%'";
+            model = new DefaultTableModel(null,titulos);
+            conexion cn=new conexion();
+            
+            
+            try {
+                Statement st=cn.con.createStatement();
+                ResultSet rs = st.executeQuery(sql);
+                while (rs.next()) {
+                    registros[0] = rs.getString("id_sensor");
+                    registros[1] = rs.getString("fecha");
+                    registros[2] = rs.getString("hora"); 
+                    registros[3] = rs.getString("temperatura");
+                    registros[4] = rs.getString("humedad");
+                    model.addRow(registros);
+                }
+                t.setModel(model);
+
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, ex);
+            }
+    }//GEN-LAST:event_buscartodoKeyPressed
 
     /**
      * @param args the command line arguments
@@ -229,6 +269,7 @@ public class busqueda extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField buscartodo;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -237,7 +278,6 @@ public class busqueda extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
