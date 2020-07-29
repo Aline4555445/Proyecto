@@ -17,8 +17,8 @@ public class conexion {
     
         try {
               Class.forName("com.mysql.jdbc.Driver");
-           //con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/esp32", "root", "123456789");
-             con =DriverManager.getConnection("jdbc:mysql://192.168.99.100/esp32", "root", "123456789");
+           con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/esp32", "root", "123456789");
+           //  con =DriverManager.getConnection("jdbc:mysql://192.168.99.100/esp32", "root", "123456789");
     // aqui van las sentencias sql
         } catch (Exception e) {
 System.err.println ("Error: " + e);
