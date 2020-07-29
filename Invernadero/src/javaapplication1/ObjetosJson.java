@@ -37,11 +37,11 @@ public class ObjetosJson {
         // String solicitud_url = "http://127.0.0.1/api-invernadero/public/api/informe";
         curl api = new curl(solicitud_url, "POST");
         
-        JSONObject informe = new JSONObject();
+        JSONObject invernadero = new JSONObject();
          
 //              invernadero.put("id_invernadero", 1);
 //              invernadero.put("id_planta", 1);
-        JSONObject obj = api.apicall(informe);
+        JSONObject obj = api.apicall(invernadero);
         String res= obj.toString();
         return res;
      
@@ -52,11 +52,11 @@ public class ObjetosJson {
         // String solicitud_url = "http://127.0.0.1/api-invernadero/public/api/catalogo";
         curl api = new curl(solicitud_url, "POST");
         
-        JSONObject catalogo = new JSONObject();
+        JSONObject invernadero = new JSONObject();
          
 //              invernadero.put("id_invernadero", 1);
 //              invernadero.put("id_planta", 1);
-        JSONObject obj = api.apicall(catalogo);
+        JSONObject obj = api.apicall(invernadero);
         String res= obj.toString();
         return res;
 }
@@ -65,11 +65,11 @@ public class ObjetosJson {
         // String solicitud_url = "http://127.0.0.1/api-invernadero/public/api/sensor";
         curl api = new curl(solicitud_url, "POST");
         
-        JSONObject sensor = new JSONObject();
+        JSONObject invernadero = new JSONObject();
          
 //              invernadero.put("id_invernadero", 1);
 //              invernadero.put("id_planta", 1);
-        JSONObject obj = api.apicall(sensor);
+        JSONObject obj = api.apicall(invernadero);
         String res= obj.toString();
         return res;
 }

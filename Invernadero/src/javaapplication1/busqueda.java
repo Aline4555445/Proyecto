@@ -43,7 +43,7 @@ public class busqueda extends javax.swing.JFrame {
 
      public void cargar(){
     
-        String [] titulos = {"Sensor","Fecha","Hora","Tempeatura","Humedad","Nombre"};
+        String [] titulos = {"Sensor","Fecha","Hora","Tempeatura","Humedad"};
         String [] registros = new String[50];
     //String sql = "select *from informe";
     
@@ -54,7 +54,7 @@ public class busqueda extends javax.swing.JFrame {
         ResultSet rs;
         try {
             st=cn.con.createStatement();
-            rs=st.executeQuery("SELECT C.nombre,G.id_sensor, G.humedad, G.temperatura, G.fecha, G.hora FROM catalogo C, invernadero I, sensor S, informe G WHERE (C.id_planta=I.id_planta AND I.id_invernadero= S.id_invernadero AND S.id_sensor= G.id_sensor);");
+            rs=st.executeQuery("select *from informe");
             while (rs.next()) {   
                 // registros[0] = rs.getString("id_informe");  //// aline O.O aqui si quieres puedes comentar los datos que no quieres visualizar y cambias las posiciones del arreglo
                  registros[0] = rs.getString("id_sensor");
@@ -62,7 +62,6 @@ public class busqueda extends javax.swing.JFrame {
                  registros[2] = rs.getString("hora"); 
                  registros[3] = rs.getString("temperatura");
                  registros[4] = rs.getString("humedad");
-                 registros[5] = rs.getString("nombre");
          model.addRow(registros);
         
         } 
