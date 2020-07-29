@@ -308,8 +308,8 @@ public class Informes extends javax.swing.JFrame {
 
             try {
 
-                Connection cn = DriverManager.getConnection("jdbc:mysql://192.168.99.100/esp32", "root", "123456789");
-                PreparedStatement pst = cn.prepareStatement("SELECT C.nombre, I.id_invernadero, S.id_sensor, G.humedad, G.temperatura, G.fecha, G.hora FROM catalogo C, invernadero I, sensor S, informe G WHERE (C.id_planta=I.id_planta AND I.id_invernadero= S.id_invernadero AND S.id_sensor= G.id_sensor) AND (I.id_invernadero=1);");
+                Connection con = DriverManager.getConnection("jdbc:mysql://192.168.99.100/esp32", "root", "123456789");
+                PreparedStatement pst = con.prepareStatement("SELECT C.nombre, I.id_invernadero, S.id_sensor, G.humedad, G.temperatura, G.fecha, G.hora FROM catalogo C, invernadero I, sensor S, informe G WHERE (C.id_planta=I.id_planta AND I.id_invernadero= S.id_invernadero AND S.id_sensor= G.id_sensor) AND (I.id_invernadero=1);");
 
                 ResultSet rs = pst.executeQuery();
 

@@ -34,7 +34,7 @@ public class general_catalogo extends javax.swing.JFrame {
         String [] registros = new String[50];
     //String sql = "select *from informe";
     
-    model = new DefaultTableModel(null, titulos);
+    model = new DefaultTableModel(null, titulos);  ///lo vez aline 
      conexion cn=new conexion();
      
         Statement st;
