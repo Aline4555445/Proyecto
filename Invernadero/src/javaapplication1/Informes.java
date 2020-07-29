@@ -1,6 +1,24 @@
 package javaapplication1;
 
+import java.sql.*;
+import javax.swing.JOptionPane;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Font;
+
+import java.awt.HeadlessException;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import javaapplication1.Principal;
 
 /*
@@ -47,6 +65,7 @@ public class Informes extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         general = new javax.swing.JRadioButton();
         mostrar = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
@@ -109,6 +128,15 @@ public class Informes extends javax.swing.JFrame {
         buttonGroup1.add(general);
         general.setText("General");
 
+        jButton1.setText("Generar Reporte");
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -121,6 +149,8 @@ public class Informes extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(41, 41, 41)
                         .addComponent(jButton2)
                         .addGap(58, 58, 58)
                         .addComponent(jButton3)
@@ -194,7 +224,8 @@ public class Informes extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButton2)
-                            .addComponent(jButton3))
+                            .addComponent(jButton3)
+                            .addComponent(jButton1))
                         .addGap(23, 23, 23))))
         );
 
@@ -242,6 +273,76 @@ public class Informes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_buscarActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Document documento = new Document();
+
+        try {
+
+            String ruta = System.getProperty("user.home");
+            //System.out.println(ruta);
+
+            PdfWriter.getInstance(documento, new FileOutputStream(ruta + "/Desktop/Reporte.pdf"));
+            
+            Image header = Image.getInstance("src/imagenes/encabezado.jpg");
+            header.scaleToFit(650, 1000);
+            header.setAlignment(Chunk.ALIGN_CENTER);
+            
+            Paragraph parrafo = new Paragraph();
+            parrafo.setAlignment(Paragraph.ALIGN_CENTER);
+            parrafo.add("Reporte Invernadero \n\n");
+            parrafo.setFont(FontFactory.getFont("Tahoma", 18, Font.BOLD, BaseColor.DARK_GRAY));
+            parrafo.add("Datos Optenidos \n\n");
+            
+            documento.open();
+            documento.add(header);
+            documento.add(parrafo);
+
+            PdfPTable tabla = new PdfPTable(7);
+            tabla.addCell("Nombre de la planta");
+            tabla.addCell("Area");
+            tabla.addCell("Sensor");
+            tabla.addCell("Humedad");
+            tabla.addCell("Temperatura");
+            tabla.addCell("Fecha");
+            tabla.addCell("Hora");
+
+            try {
+
+                Connection cn = DriverManager.getConnection("jdbc:mysql://192.168.99.100/esp32", "root", "123456789");
+                PreparedStatement pst = cn.prepareStatement("SELECT C.nombre, I.id_invernadero, S.id_sensor, G.humedad, G.temperatura, G.fecha, G.hora FROM catalogo C, invernadero I, sensor S, informe G WHERE (C.id_planta=I.id_planta AND I.id_invernadero= S.id_invernadero AND S.id_sensor= G.id_sensor) AND (I.id_invernadero=1);");
+
+                ResultSet rs = pst.executeQuery();
+
+                if (rs.next()) {
+
+                    do {
+
+                        tabla.addCell(rs.getString(1));
+                        tabla.addCell(rs.getString(2));
+                        tabla.addCell(rs.getString(3));
+                        tabla.addCell(rs.getString(4));
+                        tabla.addCell(rs.getString(5));
+                        tabla.addCell(rs.getString(6));
+                        tabla.addCell(rs.getString(7));
+
+                    } while (rs.next());
+                    documento.add(tabla);
+                }
+
+            } catch (DocumentException | SQLException e) {
+                System.out.println("Error en conexión " + e);
+            }
+
+            documento.close();
+            JOptionPane.showMessageDialog(null, "Reporte creado.");
+
+        } catch (DocumentException | FileNotFoundException e) {
+            System.out.println("Error en PDF " + e);
+        } catch (IOException e){
+            System.out.println("Error en la imagen " + e);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -283,6 +384,7 @@ public class Informes extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JRadioButton general;
     private javax.swing.JRadioButton invernadero;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private com.toedter.calendar.JDateChooser jDateChooser1;
