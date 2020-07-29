@@ -13,6 +13,25 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.*;
+import javax.swing.JOptionPane;
+
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Font;
+
+import java.awt.HeadlessException;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 public class busqueda extends javax.swing.JFrame {
 
     DefaultTableModel model;
@@ -119,7 +138,16 @@ public class busqueda extends javax.swing.JFrame {
 
         jLabel6.setText("Hora");
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/pdf.jpg"))); // NOI18N
         jButton1.setText("Generar informe");
+        jButton1.setContentAreaFilled(false);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Temperatura");
 
@@ -275,6 +303,77 @@ public class busqueda extends javax.swing.JFrame {
         humedad.setText(t.getModel().getValueAt(col, 4).toString());
 //        ffin.setText(t_evento.getModel().getValueAt(col, 5).toString());
     }//GEN-LAST:event_tMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Document documento = new Document();
+
+        try {
+
+            String ruta = System.getProperty("user.home");
+            //System.out.println(ruta);
+
+            PdfWriter.getInstance(documento, new FileOutputStream(ruta + "/Desktop/Reporte.pdf"));
+            
+            Image header = Image.getInstance("src/imagenes/encabezado.jpg");
+            header.scaleToFit(650, 1000);
+            header.setAlignment(Chunk.ALIGN_CENTER);
+            
+            Paragraph parrafo = new Paragraph();
+            parrafo.setAlignment(Paragraph.ALIGN_CENTER);
+            parrafo.add("Reporte Invernadero \n\n");
+            parrafo.setFont(FontFactory.getFont("Tahoma", 18, Font.BOLD, BaseColor.DARK_GRAY));
+            parrafo.add("Datos Obtenidos \n\n");
+            
+            documento.open();
+            documento.add(header);
+            documento.add(parrafo);
+
+            PdfPTable tabla = new PdfPTable(7);
+            tabla.addCell("Nombre de la planta");
+            tabla.addCell("Area");
+            tabla.addCell("Sensor");
+            tabla.addCell("Humedad");
+            tabla.addCell("Temperatura");
+            tabla.addCell("Fecha");
+            tabla.addCell("Hora");
+
+            try {
+
+                Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/esp32", "root", "123456789");
+                PreparedStatement pst = con.prepareStatement("SELECT C.nombre, I.id_invernadero, S.id_sensor, G.humedad, G.temperatura, G.fecha, G.hora FROM catalogo C, invernadero I, sensor S, informe G WHERE (C.id_planta=I.id_planta AND I.id_invernadero= S.id_invernadero AND S.id_sensor= G.id_sensor) AND (I.id_invernadero=1);");
+
+                ResultSet rs = pst.executeQuery();
+
+                if (rs.next()) {
+
+                    do {
+
+                        tabla.addCell(rs.getString(1));
+                        tabla.addCell(rs.getString(2));
+                        tabla.addCell(rs.getString(3));
+                        tabla.addCell(rs.getString(4));
+                        tabla.addCell(rs.getString(5));
+                        tabla.addCell(rs.getString(6));
+                        tabla.addCell(rs.getString(7));
+
+                    } while (rs.next());
+                    documento.add(tabla);
+                }
+
+            } catch (DocumentException | SQLException e) {
+                System.out.println("Error en conexión " + e);
+            }
+
+            documento.close();
+            JOptionPane.showMessageDialog(null, "Reporte creado.");
+
+        } catch (DocumentException | FileNotFoundException e) {
+            System.out.println("Error en PDF " + e);
+        } catch (IOException e){
+            System.out.println("Error en la imagen " + e);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
