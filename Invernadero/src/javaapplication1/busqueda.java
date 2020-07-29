@@ -92,8 +92,13 @@ public class busqueda extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         humedad = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(817, 610));
+        setMinimumSize(new java.awt.Dimension(817, 610));
+        setPreferredSize(new java.awt.Dimension(817, 610));
+        getContentPane().setLayout(null);
 
         t.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -113,27 +118,50 @@ public class busqueda extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(t);
 
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(20, 280, 770, 160);
+
         jLabel1.setText("Invernadero");
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(30, 20, 110, 16);
 
         buscartodo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 buscartodoKeyPressed(evt);
             }
         });
+        getContentPane().add(buscartodo);
+        buscartodo.setBounds(660, 130, 110, 30);
 
         jLabel2.setText("Busqueda");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(670, 100, 90, 14);
+        getContentPane().add(area);
+        area.setBounds(30, 40, 190, 30);
 
         jLabel4.setText("Sensor");
+        getContentPane().add(jLabel4);
+        jLabel4.setBounds(30, 150, 80, 14);
 
         sensor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sensorActionPerformed(evt);
             }
         });
+        getContentPane().add(sensor);
+        sensor.setBounds(30, 170, 190, 30);
 
         jLabel5.setText("Fecha ");
+        getContentPane().add(jLabel5);
+        jLabel5.setBounds(370, 20, 60, 14);
+        getContentPane().add(hora);
+        hora.setBounds(370, 100, 180, 30);
 
         jLabel6.setText("Hora");
+        getContentPane().add(jLabel6);
+        jLabel6.setBounds(370, 80, 60, 14);
+        getContentPane().add(fecha_in);
+        fecha_in.setBounds(370, 40, 180, 30);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/pdf.jpg"))); // NOI18N
         jButton1.setText("Generar informe");
@@ -145,10 +173,20 @@ public class busqueda extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1);
+        jButton1.setBounds(650, 180, 120, 90);
 
         jLabel7.setText("Temperatura");
+        getContentPane().add(jLabel7);
+        jLabel7.setBounds(30, 80, 120, 14);
+        getContentPane().add(temperatura);
+        temperatura.setBounds(30, 100, 190, 30);
 
         jLabel8.setText("Humedad");
+        getContentPane().add(jLabel8);
+        jLabel8.setBounds(370, 150, 90, 14);
+        getContentPane().add(humedad);
+        humedad.setBounds(370, 170, 180, 30);
 
         jButton2.setText("Regresar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -156,98 +194,14 @@ public class busqueda extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton2);
+        jButton2.setBounds(680, 500, 110, 30);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel1)
-                                .addComponent(area)
-                                .addComponent(jLabel4)
-                                .addComponent(sensor, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(temperatura, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
-                        .addGap(95, 95, 95)
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(hora, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(156, 156, 156)
-                                        .addComponent(jLabel2))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(103, 103, 103)
-                                        .addComponent(buscartodo, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(fecha_in, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6)
-                                    .addComponent(humedad, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
-                .addGap(43, 43, 43))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton2)))
-                .addGap(35, 35, 35))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel5))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(area, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(fecha_in, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(hora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2)
-                            .addComponent(temperatura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel8)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(buscartodo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(7, 7, 7)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(sensor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(humedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addGap(65, 65, 65)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(61, 61, 61)
-                .addComponent(jButton2)
-                .addGap(21, 21, 21))
-        );
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/b.jpg"))); // NOI18N
+        jLabel3.setText("jLabel3");
+        getContentPane().add(jLabel3);
+        jLabel3.setBounds(0, 0, 820, 560);
+        jLabel3.getAccessibleContext().setAccessibleName("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -340,7 +294,8 @@ public class busqueda extends javax.swing.JFrame {
 
             try {
 
-                Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/esp32", "root", "123456789");
+               // Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1/esp32", "root", "123456789");
+               Connection con =DriverManager.getConnection("jdbc:mysql://192.168.99.100/esp32", "root", "123456789");
                 PreparedStatement pst = con.prepareStatement("SELECT C.nombre, I.id_invernadero, S.id_sensor, G.humedad, G.temperatura, G.fecha, G.hora FROM catalogo C, invernadero I, sensor S, informe G WHERE (C.id_planta=I.id_planta AND I.id_invernadero= S.id_invernadero AND S.id_sensor= G.id_sensor) AND (I.id_invernadero=1);");
 
                 ResultSet rs = pst.executeQuery();
@@ -426,6 +381,7 @@ public class busqueda extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
