@@ -65,9 +65,7 @@ public class tiempo_real extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(624, 485));
         setMinimumSize(new java.awt.Dimension(624, 485));
-        setPreferredSize(new java.awt.Dimension(624, 485));
         getContentPane().setLayout(null);
 
         Table.setModel(new javax.swing.table.DefaultTableModel(
@@ -92,9 +90,11 @@ public class tiempo_real extends javax.swing.JFrame {
         getContentPane().add(jButton1);
         jButton1.setBounds(491, 115, 80, 30);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 51, 51));
         jLabel1.setText("Sensores activos");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(252, 69, 160, 14);
+        jLabel1.setBounds(230, 70, 210, 30);
 
         jButton2.setText("Regresar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {

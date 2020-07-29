@@ -67,14 +67,13 @@ public class general_catalogo extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(590, 424));
         setMinimumSize(new java.awt.Dimension(590, 424));
-        setPreferredSize(new java.awt.Dimension(590, 424));
         getContentPane().setLayout(null);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("Informacion general del catalogo de plantas");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(170, 80, 250, 30);
+        jLabel1.setBounds(120, 90, 410, 30);
 
         tbla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -87,7 +86,7 @@ public class general_catalogo extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tbla);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(70, 130, 440, 160);
+        jScrollPane1.setBounds(80, 140, 440, 160);
 
         jButton1.setText("Regresar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {

@@ -54,14 +54,13 @@ public class catalogo extends javax.swing.JFrame {
         jLabel27 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(814, 660));
         setMinimumSize(new java.awt.Dimension(814, 660));
-        setPreferredSize(new java.awt.Dimension(814, 660));
         getContentPane().setLayout(null);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Catálogo de plantas");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(366, 11, 140, 14);
+        jLabel1.setBounds(310, 2, 310, 30);
 
         jButton1.setText("Regresar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
